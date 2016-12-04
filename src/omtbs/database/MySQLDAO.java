@@ -1,5 +1,5 @@
 package omtbs.database;
 
-public class MySQLDAO extends AbstractDAO {
+public class MySQLDAO implements AbstractDAO {
 
 }

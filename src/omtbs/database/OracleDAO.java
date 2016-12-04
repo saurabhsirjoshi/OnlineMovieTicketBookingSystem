@@ -1,5 +1,5 @@
 package omtbs.database;
 
-public class OracleDAO extends AbstractDAO {
+public class OracleDAO implements AbstractDAO {
 
 }

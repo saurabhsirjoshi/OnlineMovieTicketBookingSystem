@@ -1,5 +1,5 @@
 package omtbs.database;
 
-public abstract class AbstractDAO {
+public interface AbstractDAO {
 
 }
