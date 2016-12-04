@@ -1,6 +1,19 @@
 package omtbs.core;
 
+import java.util.Date;
+
 public class OMTBSFascade {
+	long sessionID;
+	
+	public long getSessionID() {
+		Date d = new Date();
+		sessionID = d.getTime();
+		return sessionID;
+	}
+	
+	public boolean loginUser(String uName, String pwd) {
+		return true;
+	}
 	// Procedure to contact Adapter and book tickets
 	public void bookTickets() {
 		
