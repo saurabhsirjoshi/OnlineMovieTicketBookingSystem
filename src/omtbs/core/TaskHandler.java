@@ -53,10 +53,10 @@ public class TaskHandler {
 						fasc.bookTickets(movie,theatre, noOfSeats, bookingDate);
 						break;
 					case "2":
-						fasc.getHistory();
+						System.out.println(fasc.getHistory());
 						break;
 					case "3":
-						fasc.getMoviesList();
+						System.out.println(fasc.getMoviesList());
 						break;
 					case "4":
 						fasc.logoutUser();
