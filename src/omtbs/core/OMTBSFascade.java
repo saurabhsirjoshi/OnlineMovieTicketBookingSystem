@@ -2,6 +2,10 @@ package omtbs.core;
 
 import java.util.Date;
 
+import omtbs.database.AbstractDAO;
+import omtbs.database.DAOAbstractFactory;
+import omtbs.database.DAOFactoryProducer;
+
 public class OMTBSFascade {
 	long sessionID;
 	String userName;
@@ -31,13 +35,24 @@ public class OMTBSFascade {
 	}
 	
 	public String getMoviesList() {
-		return "";
+		String movieList;
+		DAOFactoryProducer facProd = new DAOFactoryProducer();
+		DAOAbstractFactory absFac = facProd.getFactory("DBFactory");
+		AbstractDAO orclDB = absFac.getDB("oracle");
+		//AbstractDAO mySQLDB = absFac.getDB("mysql");
+		movieList = orclDB.selectFromDB("select * from bookings where user='" + userName + "'");
+		return movieList;
 	}
 	
 	// Procedure to contact DB for history
 	public String getHistory() {
 		String historyText = "";
 		//Calls DB Adapter
+		DAOFactoryProducer facProd = new DAOFactoryProducer();
+		DAOAbstractFactory absFac = facProd.getFactory("DBFactory");
+		//AbstractDAO orclDB = absFac.getDB("oracle");
+		AbstractDAO mySQLDB = absFac.getDB("mysql");
+		historyText = mySQLDB.selectFromDB("select * from bookings where user='" + userName + "'");
 		return historyText;
 	}
 	
