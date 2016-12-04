@@ -8,7 +8,7 @@ import java.util.Date;
 public class TaskHandler {
 	public static void main(String[] args) throws IOException {
 		//Declare variables
-		String userName, passWord, movie, theatre, tempInput, bookingDate;
+		String userName, passWord, movie, theatre, tempInput, bookingDate, version;
 		int noOfSeats;
 		boolean loopcondition;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,13 +50,20 @@ public class TaskHandler {
 						noOfSeats = Integer.parseInt(br.readLine());
 						System.out.print("Enter Movie Date (MM/DD/YY): ");
 						bookingDate = br.readLine();
+						System.out.print("Enter System version: ");
+						version = br.readLine();
+						fasc.prodVersion = version;
 						fasc.bookTickets(movie,theatre, noOfSeats, bookingDate);
 						break;
 					case "2":
 						System.out.println(fasc.getHistory());
 						break;
 					case "3":
-						System.out.println(fasc.getMoviesList());
+						System.out.print("Enter Movie Date (MM/DD/YY): ");
+						bookingDate = br.readLine();
+						System.out.print("Enter Theatre ID: ");
+						theatre = br.readLine();
+						System.out.println(fasc.getMoviesList(bookingDate, theatre));
 						break;
 					case "4":
 						fasc.logoutUser();
