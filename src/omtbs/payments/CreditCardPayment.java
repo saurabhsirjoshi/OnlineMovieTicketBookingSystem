@@ -2,11 +2,6 @@ package omtbs.payments;
 
 public class CreditCardPayment extends TicketPayment {
 
-	public CreditCardPayment(String fileName) {
-
-		// TODO Auto-generated constructor stub
-	}
-
 	public boolean payTickets(String creditcarddetails, double Amount) {
 		if ((authentication("Hello") == true) && conductTransaction("kasjk", 10290) == true)
 
@@ -16,11 +11,13 @@ public class CreditCardPayment extends TicketPayment {
 	}
 
 	public boolean authentication(String aks) {
-		
+		// Authentication logic
 		return true;
+
 	}
 
 	public boolean conductTransaction(String creditcarddetails, double Amount) {
+		// Transaction Logic
 		return true;
 	}
 }
