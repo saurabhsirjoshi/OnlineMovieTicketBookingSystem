@@ -56,6 +56,9 @@ public class TaskHandler {
 						fasc.bookTickets(movie,theatre, noOfSeats, bookingDate);
 						break;
 					case "2":
+						System.out.print("Enter System version: ");
+						version = br.readLine();
+						fasc.prodVersion = version;
 						System.out.println(fasc.getHistory());
 						break;
 					case "3":
@@ -63,6 +66,9 @@ public class TaskHandler {
 						bookingDate = br.readLine();
 						System.out.print("Enter Theatre ID: ");
 						theatre = br.readLine();
+						System.out.print("Enter System version: ");
+						version = br.readLine();
+						fasc.prodVersion = version;
 						System.out.println(fasc.getMoviesList(bookingDate, theatre));
 						break;
 					case "4":

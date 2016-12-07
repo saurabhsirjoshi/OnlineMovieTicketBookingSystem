@@ -33,7 +33,7 @@ public class CreditCardPayment extends TicketPayment {
 		}
 		
 		if ((paymentDetails[3].length() > 3) || (paymentDetails[3].length() < 3)) {
-			System.out.println("invalid credit card number");
+			System.out.println("invalid credit card Pin");
 		}
 		
 		if (paymentDetails[4].matches("\\d{4}-\\d{2}-\\d{2}")) {

@@ -1,5 +1,8 @@
 package omtbs.core;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Date;
 
 import omtbs.adapter.IMAXAdapter;
@@ -8,6 +11,8 @@ import omtbs.adapter.OMTBSAdapter;
 import omtbs.database.AbstractDAO;
 import omtbs.database.DAOAbstractFactory;
 import omtbs.database.DAOFactoryProducer;
+import omtbs.payments.Payment;
+import omtbs.payments.PaymentProxy;
 
 public class OMTBSFascade {
 	long sessionID;
@@ -33,7 +38,7 @@ public class OMTBSFascade {
 		return true;
 	}
 	// Procedure to book tickets
-	public void bookTickets(String aMovie, String aTheatre, int aNoOfSeats, String aDate) {
+	public void bookTickets(String aMovie, String aTheatre, int aNoOfSeats, String aDate) throws IOException {
 		String availSeats;
 		if (prodVersion.equalsIgnoreCase("IMAX")) {
 			OMTBSAdapter imaxAdap = new IMAXAdapter();
@@ -54,7 +59,7 @@ public class OMTBSFascade {
 						+ "date = " + aDate);
 				availSeats = "10";
 				if(Integer.parseInt(availSeats) >= aNoOfSeats) {
-					
+					System.out.println(payTicket());
 				}
 			}
 		}
@@ -107,9 +112,33 @@ public class OMTBSFascade {
 	}
 	
 	//Procedure to connect to payment gateways
-	public String payTicket() {
-		String paymentStatus = "";
+	public String payTicket() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String payType, payDetails, paymentStatus = "";
+		String[] paymentDetails = new String[5];
+		double amount = 122;
+		
+		System.out.print("Enter PaymentType: ");
+		payType = br.readLine();
+		System.out.print("Enter Payment Details: ");
+		payDetails = br.readLine();
+		paymentDetails[0] = payType;
+		paymentDetails[1] = payDetails;
+		paymentDetails[2] = "1234567890123456";
+		paymentDetails[3] = "121";
+		paymentDetails[4] = "2020-10-12";
+		
 		//Calls Payment proxy
+		Payment payProxy = new PaymentProxy();
+		if(payProxy.payTickets(paymentDetails, amount)) {
+			paymentStatus = "Payment of $" + amount + " successfully charged to " 
+					+ paymentDetails[0] + " - " + paymentDetails[1] + " - " 
+							+ paymentDetails[2] + " - " + paymentDetails[3] + " - " 
+									+ paymentDetails[4];
+		}
+		else
+			paymentStatus = "Payment declined!";
+		
 		return paymentStatus;
 	}
 }
