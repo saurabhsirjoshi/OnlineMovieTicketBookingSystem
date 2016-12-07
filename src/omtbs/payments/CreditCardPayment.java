@@ -1,5 +1,8 @@
 package omtbs.payments;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class CreditCardPayment extends TicketPayment {
 
 	public boolean payTickets(String[] paymentDetails, double Amount) {
@@ -24,21 +27,38 @@ public class CreditCardPayment extends TicketPayment {
 	
 	public boolean authentication(String[] paymentDetails) {
 		// Authentication logic
+		
+		if ((paymentDetails[2].length() > 16) || (paymentDetails[2].length() < 16)) {
+			System.out.println("invalid credit card number");
+		}
+		
+		if ((paymentDetails[3].length() > 3) || (paymentDetails[3].length() < 3)) {
+			System.out.println("invalid credit card number");
+		}
+		
+		if (paymentDetails[4].matches("\\d{4}-\\d{2}-\\d{2}")) {
+		    
+		}
+		else{
+			System.out.println("incorrect date format");
+		}
+			
 		return true;
 
 	}
 
 	public boolean conductTransaction(String[] paymentDetails, double Amount) {
 		// Transaction Logic
+		System.out.println("Transaction completed");
 		return true;
 	}
+	
+	
 	
 	public void updateDefaultPaymentMethod(String[] paymentDetails) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 	
 	
 }

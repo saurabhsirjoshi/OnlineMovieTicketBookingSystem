@@ -18,6 +18,8 @@ public class PaymentProxy implements Payment {
 		}
 		else if (this.paymentType[0].equalsIgnoreCase("DC")) {
 			TicketPayment t = new DebitCardPayment();
+
+			t.payTickets(paymentDetails, 335);
 			t.payTickets(paymentDetails, Amount);
 		}
 		else if (this.paymentType[0].equalsIgnoreCase("PP")) {
